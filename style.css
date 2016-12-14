@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Nixie+One');
+
+html {
+  font-size: 10px;
+  background:url(img/piano.jpg) bottom center;
+  background-size: cover;
+}
+body,html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.main-text {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-text h2 {
+  font-family: 'Nixie One', cursive;
+  font-size: 35px;
+  color: white;
+  transform: translateY(150%);
+}
+
+.keys {
+  display:flex;
+  flex:1;
+  min-height:5vh;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(75%);
+}
+
+#black {
+    display: flex;
+    flex: 5;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#black-key {
+  border:2px solid black;
+  color: white;
+  background: black;
+}
+
+.key {
+  border:2px solid white;
+  border-radius:5px;
+  margin:0.1rem;
+  font-size: 1.5rem;
+  padding:5rem .1rem;
+  transition:all .07s;
+  width:50px;
+  text-align: center;
+  color: black;
+  background:white;
+}
+
+.playing {
+  transform:scale(1.1);
+  border-color:#ffc600;
+  box-shadow: 0 0 10px #ffc600;
+}
+
+kbd {
+  display: block;
+  font-size: 40px;
+}
+
+.sound {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color:#ffc600;
+}

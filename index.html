@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">wero
+<head>
+  <meta charset="UTF-8">
+  <title>JS Piano</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="main-text">
+  <h2>Press any of the following keys to start playing</h2>
+</div>
+
+<div class="allkeys">
+  <div class="keys" id="black">
+    <div data-key="87" class="key" id="black-key">
+        <kbd>W</kbd>
+        <span class="sound"></span>
+    </div>
+     <div data-key="69" class="key" id="black-key">
+        <kbd>E</kbd>
+        <span class="sound"></span>
+    </div>
+     <div data-key="82" class="key" id="black-key">
+        <kbd>R</kbd>
+        <span class="sound"></span>
+    </div>
+    <div data-key="85" class="key" id="black-key">
+        <kbd>U</kbd>
+        <span class="sound"></span>
+    </div>
+     <div data-key="73" class="key" id="black-key">
+        <kbd>I</kbd>
+        <span class="sound"></span>
+    </div>
+     <div data-key="79" class="key" id="black-key">
+        <kbd>O</kbd>
+        <span class="sound"></span>
+    </div>
+  </div>
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound"></span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound"></span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound"></span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound"></span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound"></span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound"></span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound"></span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound"></span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound"></span>
+    </div>
+  </div>
+</div>
+
+  <audio data-key="65" src="sounds/piano-28.wav"></audio>
+  <audio data-key="87" src="sounds/piano-29.wav"></audio>
+
+  <audio data-key="83" src="sounds/piano-30.wav"></audio>
+  <audio data-key="69" src="sounds/piano-31.wav"></audio>
+
+  <audio data-key="68" src="sounds/piano-32.wav"></audio>
+  <audio data-key="82" src="sounds/piano-33.wav"></audio>
+
+  <audio data-key="70" src="sounds/piano-34.wav"></audio>
+  <audio data-key="85" src="sounds/piano-35.wav"></audio>
+
+  <audio data-key="71" src="sounds/piano-36.wav"></audio>
+  <audio data-key="73" src="sounds/piano-37.wav"></audio>
+
+  <audio data-key="72" src="sounds/piano-38.wav"></audio>
+  <audio data-key="79" src="sounds/piano-39.wav"></audio>
+
+  <audio data-key="74" src="sounds/piano-40.wav"></audio>
+
+  <audio data-key="75" src="sounds/piano-41.wav"></audio>
+  <audio data-key="76" src="sounds/piano-42.wav"></audio>
+
+<script>
+  //plays the sound
+   function playSound(e){
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key   = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+    if(!audio) return;    //doesn't register when a key is pressed that doesn't have a data-key assigned
+    audio.currentTime = 0; //rewinds 
+    audio.play();
+    //adds the class playing when the key is pressed
+    key.classList.add('playing');
+    
+  }
+
+   //function for removeTransition
+  function removeTransition (e){
+    if(e.propertyName !== "transform") return; 
+    this.classList.remove('playing');
+  }
+
+    //select all keys, you'll need to listen to each one. 
+    //if you run this in the console, it will give you a node list [0] - [9]
+
+  const keys = document.querySelectorAll('.key');
+
+   //you want to listen for an event called transitionEnd on each one
+   //you want to do this cause if you have an array of elements, you must loop through every single element
+   //and attach a listener to the end. 
+
+   keys.forEach(key => key.addEventListener("transitionend", removeTransition));
+
+   //add an event listener
+   window.addEventListener('keydown', playSound);
+</script>
+
+
+</body>
+</html>
